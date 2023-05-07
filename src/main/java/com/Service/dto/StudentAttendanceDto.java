@@ -1,4 +1,4 @@
-package com.Service.dao;
+package com.Service.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 @Data
 @ApiModel(value = "学生作业完成情况数据传输对象")
-public class StudentAttendanceDao implements Serializable {
+public class StudentAttendanceDto implements Serializable {
     @ApiModelProperty(value = "每个学生考勤情况id，主键自增",example = "1",position = 1,required = true)
     private Integer id;
     @ApiModelProperty(value = "考勤id，外键",example = "1",position = 2,required = true)

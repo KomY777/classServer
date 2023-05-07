@@ -35,7 +35,7 @@ public class Result<T> {
     public static <T> Result<T> success(T object) {
         Result<T> result = new Result<>();
         result.data = object;
-        result.code = 1;
+        result.code = 200;
         return result;
     }
 
@@ -43,7 +43,7 @@ public class Result<T> {
     public static <T> Result<T> error(String msg) {
         Result<T> result = new Result<>();
         result.msg = msg;
-        result.code = 0;
+        result.code = 500;
         return result;
     }
 }

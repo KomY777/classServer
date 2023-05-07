@@ -1,4 +1,4 @@
-package com.Service.dao;
+package com.Service.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -7,7 +7,7 @@ import lombok.Data;
 import java.io.Serializable;
 @Data
 @ApiModel(value = "课程表数据传输对象")
-public class CourseDao implements Serializable {
+public class CourseDto implements Serializable {
     @ApiModelProperty(value = "课程id，主键自增",example = "1",position = 1,required = true)
     private Integer id;
     @ApiModelProperty(value = "课程id，主键自增",example = "1",position = 1,required = true)

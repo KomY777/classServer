@@ -1,4 +1,4 @@
-package com.Service.dao;
+package com.Service.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 @Data
 @ApiModel(value = "话题讨论数据传输对象")
-public class TopicAttendDao implements Serializable {
+public class TopicAttendDto implements Serializable {
     @ApiModelProperty(value = "每个留言的id，主键自增",example = "1",position = 1,required = true)
     private Integer id;
     @ApiModelProperty(value = "话题id，外键",example = "1",position = 2,required = true)

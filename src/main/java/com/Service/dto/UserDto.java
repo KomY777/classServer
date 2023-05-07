@@ -1,4 +1,4 @@
-package com.Service.dao;
+package com.Service.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Data
 @ApiModel(value = "用户数据传输对象")
-public class UserDao implements Serializable {
+public class UserDto implements Serializable {
     @ApiModelProperty(value = "用户id，主键自增",example = "1",position = 1,required = true)
     private Integer id;
     @ApiModelProperty(value = "用户名,最大长度20",example = "字符串",position = 2,required = true)
