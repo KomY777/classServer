@@ -11,7 +11,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 @EnableSwaggerBootstrapUI
-@MapperScan("com.Service.mapper")
+@MapperScan("com.Service.repository")
 public class classServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(classServiceApplication.class, args);

@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/user-login", produces = "application/json;charset=UTF-8")
+@RequestMapping(path = "/user", produces = "application/json;charset=UTF-8")
 @Slf4j
 @Api(tags = "用户登录信息表")
 public class UserController {
+
     private final ModelMapper mapper;
+    @Autowired
     private final UserService userService;
 
     @Autowired
@@ -29,25 +31,25 @@ public class UserController {
         this.mapper = mapper;
     }
     @ApiOperation(value = "注册新用户",notes = "权限，无")
-    @RequestMapping(path = "/user-new",method = RequestMethod.POST)
+    @RequestMapping(path = "/register",method = RequestMethod.POST)
     public boolean addUser(@RequestBody UserDto userDto) throws RuntimeException {
         return userService.addUser(userDto);
     }
 
 
     @ApiOperation(value = "更改密码",notes = "权限，无")
-    @RequestMapping(path = "/user-update",method = RequestMethod.POST)
+    @RequestMapping(path = "/update",method = RequestMethod.POST)
     public boolean updateUser(@RequestBody UserDto userDto) throws RuntimeException{
         return userService.updateUser(userDto);
     }
 
     @ApiOperation(value = "注销用户",notes = "权限，无")
-    @RequestMapping(path = "/user-logout",method = RequestMethod.POST)
+    @RequestMapping(path = "/logout",method = RequestMethod.POST)
     public boolean removeUser(@RequestBody UserDto userDto) throws RuntimeException{
         return userService.removeUser(userDto);
     }
     @ApiOperation(value = "用户登录",notes = "权限，无")
-    @RequestMapping(path = "/user-login",method = RequestMethod.POST)
+    @RequestMapping(path = "/login",method = RequestMethod.POST)
     public UserDto login(@RequestBody String username,String password) throws RuntimeException{
         return userService.login(username,password);
     }

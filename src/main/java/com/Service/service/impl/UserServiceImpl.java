@@ -12,11 +12,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
+
     @Autowired
     private UserRepository userRepository;
 
     @Override
     public boolean addUser(UserDto userDto) {
+
         return userRepository.addUser(userDto);
     }
 

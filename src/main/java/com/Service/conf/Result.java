@@ -1,4 +1,4 @@
-package com.Service.common;
+package com.Service.conf;
 
 
 import io.swagger.annotations.ApiModel;
