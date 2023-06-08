@@ -32,10 +32,11 @@ public class Result<T> {
     private T data;
 
     //    操作成功
-    public static <T> Result<T> success(T object) {
+    public static <T> Result<T> success(T object,String msg) {
         Result<T> result = new Result<>();
         result.data = object;
         result.code = 200;
+        result.msg = msg;
         return result;
     }
 

@@ -10,7 +10,7 @@ import java.io.Serializable;
 @ApiModel(value = "用户数据传输对象")
 public class UserDto implements Serializable {
     @ApiModelProperty(value = "用户id，主键自增",example = "1",position = 1,required = true)
-    private Integer id;
+    private Long id;
     @ApiModelProperty(value = "用户名,最大长度20",example = "字符串",position = 2,required = true)
     private String username;
     @ApiModelProperty(value = "密码,最大长度255",example = "字符串",position = 3,required = true)
