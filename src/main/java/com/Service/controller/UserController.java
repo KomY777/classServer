@@ -22,21 +22,16 @@ import javax.servlet.http.HttpServletRequest;
 @Api(tags = "用户登录信息表")
 public class UserController {
 
-    private final ModelMapper mapper;
     @Autowired
     private final UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
-        ModelMapper mapper=new ModelMapper();
-        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-        this.mapper = mapper;
     }
     @ApiOperation(value = "注册新用户",notes = "权限，无")
     @RequestMapping(path = "/register",method = RequestMethod.POST)
     public Result<String> addUser(@RequestBody UserDto userDto) throws RuntimeException {
-
         if ( userService.addUser(userDto)) {
             return Result.success(null,"User added successfully");
         }
@@ -52,8 +47,11 @@ public class UserController {
 
     @ApiOperation(value = "注销用户",notes = "权限，无")
     @RequestMapping(path = "/logout",method = RequestMethod.POST)
-    public Result<String> removeUser(@RequestBody UserDto userDto) throws RuntimeException{
-        return Result.error("dsa");
+    public Result<String> removeUser(HttpServletRequest request) throws RuntimeException{
+        request.getSession().removeAttribute("user");
+        request.getSession().removeAttribute("name");
+        request.getSession().invalidate();
+        return Result.success(null,"ok");
     }
     @ApiOperation(value = "用户登录",notes = "权限，无")
     @RequestMapping(path = "/login",method = RequestMethod.POST)

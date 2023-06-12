@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Service.repository.CourseRepository">
+
+
+    <insert id="addCourse" parameterType="com.Service.entity.CourseEntity">
+                insert into course(id,course_name,course_state,teacher_id,academic_year,semester)
+            select #{id},#{courseName},#{courseState},#{teacherId},#{academicYear},#{semester}
+            from dual where  (select count(*)
+                  from user
+                  where id =#{teacherId} and `identity`=0) >0;
+    </insert>
+    <update id="updateCourse" parameterType="com.Service.entity.CourseEntity">
+        update course set course_name =#{courseName},course_state=#{courseState},academic_year=#{academicYear},semester=#{semester}
+        where id = #{id} and (select count(*)
+                             from user
+                             where id =#{teacherId} and `identity`=0) >0;
+    </update>
+</mapper>

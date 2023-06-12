@@ -26,7 +26,12 @@ public class UserServiceImpl extends ServiceImpl<UserRepository, UserEntity> imp
             userDto.setPassword(SaltedHash.hash(userDto.getPassword()));
             UserEntity userEntity = new UserEntity();
             BeanUtils.copyProperties(userDto, userEntity);
+            if(userRepository.login(userEntity) == null) {
+                System.out.println(userEntity);
             return userRepository.insert(userEntity) == 0;
+            }else {
+                throw new RuntimeException("账号已存在");
+            }
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
@@ -42,15 +47,19 @@ public class UserServiceImpl extends ServiceImpl<UserRepository, UserEntity> imp
         }
     }
 
-    @Override
-    public boolean updateUser(UserDto userDto) {
-        try {
-            UserDto user = login(userDto);
-            return userRepository.updateUser(userDto);
-        }catch (Exception e){
-            throw new RuntimeException("");
-        }
-    }
+//    @Override
+//    public boolean updateUser(UserDto userDto,String password) {
+//        try {
+//            UserDto user = login(userDto);
+//            UserEntity userEntity = new UserEntity();
+//            BeanUtils.copyProperties(userDto,userEntity);
+//            userEntity.setPassword(password);
+//            user
+//            return userRepository.update();
+//        }catch (Exception e){
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     @Override
     public UserDto login(UserDto user) {
@@ -66,7 +75,7 @@ public class UserServiceImpl extends ServiceImpl<UserRepository, UserEntity> imp
                }
                return userDto;
             }else {
-                return null;
+               throw new RuntimeException("用户名错误");
             }
         }catch (Exception e) {
             throw new RuntimeException(e);
