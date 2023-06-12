@@ -8,4 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface CourseRepository extends BaseMapper<CourseEntity> {
     int addCourse(CourseEntity courseEntity);
     int updateCourse(CourseEntity courseEntity);
+    boolean removeCourse(Long id,Long teacherId);
 }

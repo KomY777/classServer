@@ -16,4 +16,10 @@
                              from user
                              where id =#{teacherId} and `identity`=0) >0;
     </update>
+    <delete id="removeCourse" >
+        delete  from course
+            where id = #{id} and (select count(*)
+                  from user
+                  where id =#{teacherId} and `identity`=0) >0;
+    </delete>
 </mapper>

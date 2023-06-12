@@ -13,9 +13,11 @@ import java.util.Date;
 public class CourseDto implements Serializable {
     @ApiModelProperty(value = "课程id，主键自增",example = "1",position = 1,required = true)
     private Long id;
-    @ApiModelProperty(value = "课程id，主键自增",example = "1",position = 1,required = true)
+    @ApiModelProperty(value = "课程名",example = "1",position = 1,required = true)
     private String courseName;
-    @ApiModelProperty(value = "课程id，主键自增",example = "1",position = 1,required = true)
+    @ApiModelProperty(value = "班级",example = "1",position = 1,required = true)
+    private String className;
+    @ApiModelProperty(value = "课程状态",example = "1",position = 1,required = true)
     private String courseState;
     @ApiModelProperty(value = "课程教师id,外键",example = "1",position = 4, required =true)
     private String teacherId;

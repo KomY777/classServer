@@ -7,6 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface UserRepository extends BaseMapper<UserEntity> {
-    boolean updateUser(UserDto userDto);
-    UserEntity login(UserEntity userEntity);
+    UserEntity login(String username,String password);
 }

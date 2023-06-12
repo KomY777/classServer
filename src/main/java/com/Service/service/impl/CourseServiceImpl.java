@@ -39,8 +39,12 @@ public class CourseServiceImpl extends ServiceImpl<CourseRepository, CourseEntit
     }
 
     @Override
-    public boolean removeCourse(CourseDto courseDto) {
-        return false;
+    public boolean removeCourse(Long id, Long teacherId) {
+        try {
+            return courseRepository.removeCourse(id,teacherId);
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

@@ -3,15 +3,11 @@ package com.Service.controller;
 import com.Service.conf.Result;
 import com.Service.dto.CourseDto;
 import com.Service.service.CourseService;
-import com.Service.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/course", produces = "application/json;charset=UTF-8")
@@ -29,17 +25,40 @@ public class CourseController {
     @ApiOperation(value = "新增课程",notes = "权限，老师")
     @RequestMapping(path = "/addCourse",method = RequestMethod.POST)
     public Result<String> addCourse(@RequestBody CourseDto courseDto){
-        if (courseService.addCourse(courseDto)){
-            return Result.success(null,"success");
+        try {
+            if (courseService.addCourse(courseDto)) {
+                return Result.success(null, "success");
+            }else {
+            return Result.error("fail");
+            }
+        }catch (Exception e) {
+            return Result.error(e.getMessage());
         }
-        return Result.error("fail");
-    }@ApiOperation(value = "修改课程信息",notes = "权限，老师")
+    }
+    @ApiOperation(value = "修改课程信息",notes = "权限，老师")
     @RequestMapping(path = "/updateCourse",method = RequestMethod.POST)
     public Result<String> updateCourse(@RequestBody CourseDto courseDto){
-        if (courseService.updateCourse(courseDto)){
-            return Result.success(null,"success");
+        try {
+            if (courseService.updateCourse(courseDto)) {
+                return Result.success(null, "success");
+            }else {
+            return Result.error("fail");
+            }
+        }catch (Exception e) {
+            return Result.error(e.getMessage());
         }
-        return Result.error("fail");
     }
-
+    @ApiOperation(value = "删除课程",notes = "权限，老师")
+    @RequestMapping(path = "/removeCourse",method = RequestMethod.GET)
+    public Result<String> removeCourse(@RequestParam Long id,Long teacherId){
+        try {
+            if (courseService.removeCourse(id, teacherId)) {
+                return Result.success(null, "success");
+            }else {
+            return Result.error("fail");
+            }
+        }catch (Exception e) {
+            return Result.error(e.getMessage());
+        }
+    }
 }

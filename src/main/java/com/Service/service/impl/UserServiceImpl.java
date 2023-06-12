@@ -26,9 +26,8 @@ public class UserServiceImpl extends ServiceImpl<UserRepository, UserEntity> imp
             userDto.setPassword(SaltedHash.hash(userDto.getPassword()));
             UserEntity userEntity = new UserEntity();
             BeanUtils.copyProperties(userDto, userEntity);
-            if(userRepository.login(userEntity) == null) {
-                System.out.println(userEntity);
-            return userRepository.insert(userEntity) == 0;
+            if(userRepository.login(userEntity.getUsername(), userEntity.getPassword()) == null) {
+                return userRepository.insert(userEntity) == 0;
             }else {
                 throw new RuntimeException("账号已存在");
             }
@@ -37,43 +36,41 @@ public class UserServiceImpl extends ServiceImpl<UserRepository, UserEntity> imp
         }
     }
 
-    @Override
-    public boolean removeUser(UserDto userDto) {
-        try {
-           UserDto userEntity = login(userDto);
-            return userRepository.deleteById(userEntity.getId()) == 0;
-        }catch (Exception e) {
-            throw new RuntimeException("111");
-        }
-    }
-
 //    @Override
-//    public boolean updateUser(UserDto userDto,String password) {
+//    public boolean removeUser(UserDto userDto) {
 //        try {
-//            UserDto user = login(userDto);
-//            UserEntity userEntity = new UserEntity();
-//            BeanUtils.copyProperties(userDto,userEntity);
-//            userEntity.setPassword(password);
-//            user
-//            return userRepository.update();
-//        }catch (Exception e){
-//            throw new RuntimeException(e);
+//           UserDto userEntity = login(userDto);
+//            return userRepository.deleteById(userEntity.getId()) == 0;
+//        }catch (Exception e) {
+//            throw new RuntimeException("111");
 //        }
 //    }
 
     @Override
-    public UserDto login(UserDto user) {
+    public boolean updateUser(String username,String password,String newPassword) {
         try {
+            UserDto user = login(username,password);
             UserEntity userEntity = new UserEntity();
-            BeanUtils.copyProperties(user, userEntity);
-            UserEntity userOut= userRepository.login(userEntity);
-            if (userRepository !=null){
+            BeanUtils.copyProperties(user,userEntity);
+            userEntity.setPassword(SaltedHash.hash(newPassword));
+            return userRepository.updateById(userEntity) !=0;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public UserDto login(String username,String password) {
+        try {
+            UserEntity userOut= userRepository.login(username,password);
+            if (userOut !=null){
                UserDto userDto = new UserDto();
                BeanUtils.copyProperties(userOut, userDto);
-               if(SaltedHash.check(user.getPassword(),userDto.getPassword())){
+               if(SaltedHash.check(password,userDto.getPassword())){
+                    return userDto;
+               }else {
                    throw new RuntimeException("密码错误");
                }
-               return userDto;
             }else {
                throw new RuntimeException("用户名错误");
             }

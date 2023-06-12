@@ -19,4 +19,6 @@ public class UserDto implements Serializable {
     private String identity;
     @ApiModelProperty(value = "用户的名称",example = "1",position = 5)
     private String name;
+    @ApiModelProperty(value = "学号/教工号",example = "1",position = 6)
+    private String number;
 }

@@ -28,4 +28,7 @@ public class UserEntity implements Serializable {
     @ApiModelProperty(value = "用户的名称",example = "1",position = 5)
     @TableField(value = "name")
     private String name;
+    @ApiModelProperty(value = "学号/教工号",example = "1",position = 6)
+    @TableField(value = "number")
+    private String number;
 }
