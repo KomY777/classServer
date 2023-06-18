@@ -1,6 +1,16 @@
 server:
   port: 8080
 spring:
+  mail:
+    host: smtp.qq.com
+    username:  2930738331@qq.com
+    password: qoymeldnjwxwdgha
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+        debug: true
   application:
     name: classServer
   datasource:

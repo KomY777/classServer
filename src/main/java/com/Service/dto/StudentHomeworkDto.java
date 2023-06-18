@@ -15,11 +15,11 @@ public class StudentHomeworkDto implements Serializable {
     @ApiModelProperty(value = "作业id,外键",example = "1",position = 2,required = true)
     private Integer homeworkId;
     @ApiModelProperty(value = "作业状态",example = "1",position = 3)
-    private String homeworkState;
+    private Integer homeworkState;
     @ApiModelProperty(value = "学生id,外键",example = "1",position = 4, required =true)
     private Integer studentId;
     @ApiModelProperty(value = "作业提交状态",example = "0/1",position = 5)
-    private String commitState;
+    private Integer commitState;
     @ApiModelProperty(value = "作业成绩",example = "1",position = 6)
     private String grade;
     @ApiModelProperty(value = "备注",example = "1",position =7)

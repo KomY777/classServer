@@ -61,4 +61,15 @@ public class CourseController {
             return Result.error(e.getMessage());
         }
     }
+
+    @ApiOperation(value = "获取课程码",notes = "权限，老师")
+    @RequestMapping(path = "/getCourseCode",method = RequestMethod.GET)
+    public Result<String> getCourseCode(@RequestParam Long id,Long teacherId){
+        try{
+            String code = courseService.getCourseCode(id,teacherId);
+                return Result.success(code, "success");
+        }catch (Exception e) {
+            return Result.error(e.getMessage());
+        }
+    }
 }

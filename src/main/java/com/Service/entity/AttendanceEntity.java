@@ -15,7 +15,7 @@ public class AttendanceEntity implements Serializable {
     @ApiModelProperty(value = "课程id，外键",example = "1",position = 2,required = true)
     private Integer courseId;
     @ApiModelProperty(value = "考勤状态",example = "0/1",position = 3)
-    private String  attendanceState;
+    private Integer  attendanceState;
     @ApiModelProperty(value = "创建者",example = "字符串",position = 4)
     private String createBy;
     @ApiModelProperty(value = "创建时间",example = "1",position = 5)

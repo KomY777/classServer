@@ -9,4 +9,5 @@ public interface CourseRepository extends BaseMapper<CourseEntity> {
     int addCourse(CourseEntity courseEntity);
     int updateCourse(CourseEntity courseEntity);
     boolean removeCourse(Long id,Long teacherId);
+    int getCourseCode(Long id,Long teacherId,String courseCode);
 }

@@ -15,11 +15,11 @@ public class StudentAttendanceEntity implements Serializable {
     @ApiModelProperty(value = "考勤id，外键",example = "1",position = 2,required = true)
     private Integer attendanceId;
     @ApiModelProperty(value = "考勤状态",example = "0/1",position = 3)
-    private String attendaceState;
+    private Integer attendaceState;
     @ApiModelProperty(value = "学生id，外键",example = "1",position = 4,required = true)
     private Integer studentId;
     @ApiModelProperty(value = "签到状态",example = "0/1",position = 5)
-    private String studentState;
+    private Integer studentState;
     @ApiModelProperty(value = "创建时间",example = "1",position = 6)
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     private Date createTime;

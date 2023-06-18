@@ -15,7 +15,7 @@ public class HomeworkEntity implements Serializable {
     @ApiModelProperty(value = "课程id，外键",example = "1",position = 2,required = true)
     private Integer courseId;
     @ApiModelProperty(value = "课程状态",example = "0/1",position = 3)
-    private String homeworkState;
+    private Integer homeworkState;
     @ApiModelProperty(value = "备注",example = "字符串",position = 4)
     private String remark;
     @ApiModelProperty(value = "创建时间",example = "1",position = 5)

@@ -5,9 +5,12 @@ import com.Service.entity.UserEntity;
 import com.Service.repository.UserRepository;
 import com.Service.service.UserService;
 import com.Service.util.SaltedHash;
+import com.Service.util.Transform;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
@@ -77,5 +80,23 @@ public class UserServiceImpl extends ServiceImpl<UserRepository, UserEntity> imp
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public boolean sendMail(MailSender mailSender,String email) {
+        try {
+            long timestamp = System.currentTimeMillis()%100000000;
+            String captcha = Transform.fromDecimal(timestamp);
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setFrom("2930738331@qq.com");
+            mailMessage.setTo(email);
+            mailMessage.setSubject("CQUT 课堂派");
+            String message = "Hi,您正在注册课堂派,以下是您的邮箱验证码:\n\n\n      " + captcha;
+            mailMessage.setText(message);
+            mailSender.send(mailMessage);
+        }catch (Exception e) {
+           throw  new RuntimeException(e);
+        }
+        return true;
     }
 }

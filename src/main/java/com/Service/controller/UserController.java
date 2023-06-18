@@ -4,11 +4,12 @@ import com.Service.conf.Result;
 import com.Service.dto.UserDto;
 import com.Service.service.UserService;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.*;
+import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,8 @@ public class UserController {
 
     @Autowired
     private final UserService userService;
-
+    @Autowired
+    private JavaMailSenderImpl mailService;
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
@@ -37,6 +39,12 @@ public class UserController {
         }catch (Exception e) {
             return Result.error(e.getMessage());
         }
+    }
+    @ApiOperation(value = "发送邮件",notes = "权限，无")
+    @RequestMapping(path = "/sendMail", method = RequestMethod.GET)
+    public  Result<String> sendMail(@RequestParam String email, HttpServletRequest request){
+        userService.sendMail(mailService,email);
+        return Result.success(null, "");
     }
 
 

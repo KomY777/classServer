@@ -24,7 +24,7 @@ public class UserEntity implements Serializable {
     private String password;
     @ApiModelProperty(value = "用户的身份标识",example = "0/1",position = 4,required = true)
     @TableField(value = "identity")
-    private String identity;
+    private Integer identity;
     @ApiModelProperty(value = "用户的名称",example = "1",position = 5)
     @TableField(value = "name")
     private String name;

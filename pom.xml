@@ -114,6 +114,12 @@
                 <artifactId>hibernate-validator</artifactId>
                 <version>6.1.7.Final</version>
             </dependency>
+<!--            spring发送邮件依赖-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-mail</artifactId>
+            </dependency>
+
         </dependencies>
 
         <build>

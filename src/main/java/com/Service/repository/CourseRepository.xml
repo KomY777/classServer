@@ -22,4 +22,8 @@
                   from user
                   where id =#{teacherId} and `identity`=0) >0;
     </delete>
+    <update id="getCourseCode">
+        update course set course_code=#{courseCode}
+            where id = #{id} and teacher_id = #{teacherId}
+    </update>
 </mapper>

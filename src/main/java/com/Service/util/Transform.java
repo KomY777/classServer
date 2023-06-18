@@ -14,6 +14,7 @@ public class Transform {
     private static final char[] DIGITS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 
     public static String fromDecimal(long num) {
+        num = Long.parseLong(reverse(String.valueOf((num))));
         char[] buf = new char[65];
         int charPos = 64;
         boolean negative = false;
@@ -31,6 +32,15 @@ public class Transform {
             buf[--charPos] = '-';
         }
         return new String(buf, charPos, (65 - charPos));
+    }
+
+    public static String reverse(String str) {
+        String reverse = "";
+        int length = str.length();
+        for (int i = 0; i < length; i++) {
+            reverse = str.charAt(i) + reverse;
+        }
+        return reverse;
     }
 
 }
