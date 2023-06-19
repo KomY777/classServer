@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Service.repository.StudentCourseRepository">
+    <insert id="joinCourse" parameterType="com.Service.entity.StudentCourseEntity">
+        <selectKey keyProperty="courseId" resultType="long" order="BEFORE">
+                select id from course where course_code=#{courseCode}
+        </selectKey>
+
+            <if test="courseId != null ">
+                insert into course_student(id,course_name,student_id,course_id,state,update_time)
+                select #{studentCourseEntity.id},#{studentCourseEntity.courseName},#{studentCourseEntity.studentId},#{courseId},#{studentCourseEntity.state},#{studentCourseEntity.updateTime}
+                from dual where  (select count(*)
+                                    from course_student
+                                    where course_id =#{courseId} and student_id=#{studentCourseEntity.studentId})=0;
+            </if>
+    </insert>
+
+</mapper>

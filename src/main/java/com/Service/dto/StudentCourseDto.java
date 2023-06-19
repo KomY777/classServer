@@ -1,6 +1,5 @@
 package com.Service.dto;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -25,5 +24,7 @@ public class StudentCourseDto implements Serializable {
     @ApiModelProperty(value = "更新时间",example = "1",position = 6)
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
+    @ApiModelProperty(value = "课程码",example = "1",position = 7)
+    private String coruseCode;
 
 }
