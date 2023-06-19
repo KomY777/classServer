@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping(path = "/user", produces = "application/json;charset=UTF-8")
+@RequestMapping(path = "/api/user", produces = "application/json;charset=UTF-8")
 @Slf4j
 @Api(tags = "用户登录信息表")
 public class UserController {

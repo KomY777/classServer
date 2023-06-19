@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/course", produces = "application/json;charset=UTF-8")
+@RequestMapping(path = "/api/course", produces = "application/json;charset=UTF-8")
 @Slf4j
 @Api(tags = "课程管理表")
 public class CourseController {

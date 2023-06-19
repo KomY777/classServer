@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/course", produces = "application/json;charset=UTF-8")
+@RequestMapping(path = "/api/studentCourse", produces = "application/json;charset=UTF-8")
 @Slf4j
-@Api(tags = "课程管理表")
+@Api(tags = "学生课程管理表")
 
 public class StudentCourseController {
     @Autowired
@@ -44,7 +44,7 @@ public class StudentCourseController {
             if(studentCourseService.exitCourse(id)){
                 return Result.success(null,"success");
             }else {
-                return Result.error("加入失败，请检查是否已加入课程");
+                return Result.error("退出失败，请检查是否已加入课程");
             }
         }catch (Exception e) {
             return Result.error(e.getMessage());
