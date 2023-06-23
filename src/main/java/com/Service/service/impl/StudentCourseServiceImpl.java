@@ -1,7 +1,10 @@
 package com.Service.service.impl;
 
+import com.Service.dto.CourseDto;
 import com.Service.dto.StudentCourseDto;
+import com.Service.entity.CourseEntity;
 import com.Service.entity.StudentCourseEntity;
+import com.Service.repository.CourseRepository;
 import com.Service.repository.StudentCourseRepository;
 import com.Service.service.StudentCourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -18,6 +21,8 @@ public class StudentCourseServiceImpl extends ServiceImpl<StudentCourseRepositor
 
     @Autowired
     private StudentCourseRepository studentCourseRepository;
+    @Autowired
+    private CourseRepository courseRepository;
 
     @Override
     public boolean joinCourse(StudentCourseDto studentCourseDto) {
@@ -41,18 +46,30 @@ public class StudentCourseServiceImpl extends ServiceImpl<StudentCourseRepositor
     }
 
     @Override
-    public List<StudentCourseDto> getCourse(Long id) {
+    public List<CourseDto> getCourse(Long id) {
         try{
-            List <StudentCourseEntity> studentCourseEntities = studentCourseRepository.getCourse(id);
-            StudentCourseDto studentCourseDto = new StudentCourseDto();
-            List<StudentCourseDto> list =new ArrayList<>();
-            for (StudentCourseEntity entity : studentCourseEntities){
-                BeanUtils.copyProperties(entity,studentCourseDto);
-                list.add(studentCourseDto);
+            List <Long> courseIdList = studentCourseRepository.getCourse(id);
+            List<CourseDto> list =new ArrayList<>();
+            for (Long courseId : courseIdList){
+                CourseEntity courseEntity = courseRepository.selectById(courseId);
+                CourseDto courseDto = new CourseDto();
+                BeanUtils.copyProperties(courseEntity, courseDto);
+                courseDto.setTeacherName(courseRepository.getName(courseDto.getTeacherId()));
+                list.add(courseDto);
             }
             return list;
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public boolean archiveCourse(Long id) {
+        try{
+
+        }catch (Exception e) {
+
+        }
+        return  false;
     }
 }

@@ -82,7 +82,7 @@ public class CourseController {
             if(list.size()!=0){
                 return Result.success(list,"success");
             }else {
-                return Result.error("退出失败，请检查是否已加入课程");
+                return Result.error("还没有课程");
             }
         }catch (Exception e) {
             return Result.error(e.getMessage());

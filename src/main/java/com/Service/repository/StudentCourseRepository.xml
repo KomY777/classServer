@@ -5,7 +5,6 @@
         <selectKey keyProperty="courseId" resultType="long" order="BEFORE">
                 select id from course where course_code=#{courseCode}
         </selectKey>
-
             <if test="courseId != null ">
                 insert into course_student(id,course_name,student_id,course_id,state,update_time)
                 select #{studentCourseEntity.id},#{studentCourseEntity.courseName},#{studentCourseEntity.studentId},#{courseId},#{studentCourseEntity.state},#{studentCourseEntity.updateTime}
@@ -14,8 +13,12 @@
                                     where course_id =#{courseId} and student_id=#{studentCourseEntity.studentId})=0;
             </if>
     </insert>
-    <select id="getCourse" resultType="com.Service.entity.StudentCourseEntity">
-        select * from course
+    <select id="getCourse" resultType="long">
+        select course_id from course_student
         where student_id = #{id}
     </select>
+    <update id="archiveCourse" >
+        update course_student set student_state = 1
+            where id = #{id}
+    </update>
 </mapper>

@@ -1,6 +1,7 @@
 package com.Service.controller;
 
 import com.Service.conf.Result;
+import com.Service.dto.CourseDto;
 import com.Service.dto.StudentCourseDto;
 import com.Service.service.StudentCourseService;
 import io.swagger.annotations.Api;
@@ -52,15 +53,30 @@ public class StudentCourseController {
             return Result.error(e.getMessage());
         }
     }
+
+    @ApiOperation(value = "课程归档",notes = "权限，无")
+    @RequestMapping(path = "/archive",method = RequestMethod.GET)
+    public Result<String> archiveCourse(@RequestParam Long id){
+        try{
+
+            if(studentCourseService.archiveCourse(id)){
+                return Result.success(null,"success");
+            }else {
+                return Result.error("退出失败，请检查是否已加入课程");
+            }
+        }catch (Exception e) {
+            return Result.error(e.getMessage());
+        }
+    }
     @ApiOperation(value = "获取课程信息",notes = "权限，学生")
     @RequestMapping(path = "/getCourse",method = RequestMethod.GET)
-    public Result<List<StudentCourseDto>> getCourse(@RequestParam Long id){
+    public Result<List<CourseDto>> getCourse(@RequestParam Long id){
         try{
-            List<StudentCourseDto> list = studentCourseService.getCourse(id);
+            List<CourseDto> list = studentCourseService.getCourse(id);
             if(list.size()!=0){
                 return Result.success(list,"success");
             }else {
-                return Result.error("退出失败，请检查是否已加入课程");
+                return Result.error("请检查是否已加入课程");
             }
         }catch (Exception e) {
             return Result.error(e.getMessage());

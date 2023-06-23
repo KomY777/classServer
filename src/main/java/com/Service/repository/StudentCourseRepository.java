@@ -9,5 +9,6 @@ import java.util.List;
 @Mapper
 public interface StudentCourseRepository extends BaseMapper<StudentCourseEntity> {
      int joinCourse(StudentCourseEntity studentCourseEntity,String courseCode);
-     List<StudentCourseEntity> getCourse(Long id);
+     List<Long> getCourse(Long id);
+     boolean archiveCourse(Long id);
 }

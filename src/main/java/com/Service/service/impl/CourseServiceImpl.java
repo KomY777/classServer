@@ -69,10 +69,11 @@ public class CourseServiceImpl extends ServiceImpl<CourseRepository, CourseEntit
     public List<CourseDto> getCourse(Long id) {
         try{
            List <CourseEntity> courseEntityList = courseRepository.getCourse(id);
-           CourseDto courseDto = new CourseDto();
            List<CourseDto> list =new ArrayList<>();
            for (CourseEntity entity : courseEntityList){
+               CourseDto courseDto = new CourseDto();
                BeanUtils.copyProperties(entity,courseDto);
+               courseDto.setTeacherName(courseRepository.getName(courseDto.getTeacherId()));
                list.add(courseDto);
            }
            return list;
