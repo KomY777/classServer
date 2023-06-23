@@ -4,8 +4,8 @@
 
 
     <insert id="addCourse" parameterType="com.Service.entity.CourseEntity">
-                insert into course(id,course_name,course_state,teacher_id,academic_year,semester)
-            select #{id},#{courseName},#{courseState},#{teacherId},#{academicYear},#{semester}
+                insert into course(id,course_name,class_name,course_state,teacher_id,academic_year,semester)
+            select #{id},#{courseName},#{className},#{courseState},#{teacherId},#{academicYear},#{semester}
             from dual where  (select count(*)
                   from user
                   where id =#{teacherId} and `identity`=0) >0;

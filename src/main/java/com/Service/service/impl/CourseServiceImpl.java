@@ -25,7 +25,8 @@ public class CourseServiceImpl extends ServiceImpl<CourseRepository, CourseEntit
         try {
             CourseEntity courseEntity = new CourseEntity();
             BeanUtils.copyProperties(courseDto, courseEntity);
-            return courseRepository.addCourse(courseEntity) != 0;
+            courseEntity.setCourseCode(Transform.fromDecimal(System.currentTimeMillis()%100000000));
+            return courseRepository.addCourse(courseEntity) !=0;
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
