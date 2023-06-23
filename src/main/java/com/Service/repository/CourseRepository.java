@@ -13,4 +13,5 @@ public interface CourseRepository extends BaseMapper<CourseEntity> {
     boolean removeCourse(Long id,Long teacherId);
     int getCourseCode(Long id,Long teacherId,String courseCode);
     List<CourseEntity> getCourse(Long id);
+    String getName(Long id);
 }

@@ -26,7 +26,10 @@
         update course set course_code=#{courseCode}
             where id = #{id} and teacher_id = #{teacherId}
     </update>
-
+    <select id="getName" resultType="string">
+        select `name` from user
+            where id = #{id}
+    </select>
     <select id="getCourse" resultType="com.Service.entity.CourseEntity">
         select * from course
                 where teacher_id = #{id}
