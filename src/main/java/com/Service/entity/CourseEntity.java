@@ -24,7 +24,7 @@ public class CourseEntity implements Serializable {
     private Integer courseState;
     @ApiModelProperty(value = "课程教师id,外键",example = "1",position = 4, required =true)
     @TableField(value = "teacher_id")
-    private String teacherId;
+    private Long teacherId;
     @ApiModelProperty(value = "学年",example = "2022-2023",position = 5)
     @TableField(value = "academic_year")
     private String academicYear;
