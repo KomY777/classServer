@@ -9,6 +9,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class StudentCourseServiceImpl extends ServiceImpl<StudentCourseRepository, StudentCourseEntity> implements StudentCourseService {
@@ -32,6 +35,22 @@ public class StudentCourseServiceImpl extends ServiceImpl<StudentCourseRepositor
     public boolean exitCourse(Long id) {
         try{
             return studentCourseRepository.deleteById(id) == 1;
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<StudentCourseDto> getCourse(Long id) {
+        try{
+            List <StudentCourseEntity> studentCourseEntities = studentCourseRepository.getCourse(id);
+            StudentCourseDto studentCourseDto = new StudentCourseDto();
+            List<StudentCourseDto> list =new ArrayList<>();
+            for (StudentCourseEntity entity : studentCourseEntities){
+                BeanUtils.copyProperties(entity,studentCourseDto);
+                list.add(studentCourseDto);
+            }
+            return list;
         }catch (Exception e) {
             throw new RuntimeException(e);
         }

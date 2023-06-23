@@ -30,7 +30,7 @@ public class UserServiceImpl extends ServiceImpl<UserRepository, UserEntity> imp
             UserEntity userEntity = new UserEntity();
             BeanUtils.copyProperties(userDto, userEntity);
             if(userRepository.login(userEntity.getUsername(), userEntity.getPassword()) == null) {
-                return userRepository.insert(userEntity) == 0;
+                return userRepository.insert(userEntity) == 1;
             }else {
                 throw new RuntimeException("账号已存在");
             }
@@ -70,6 +70,7 @@ public class UserServiceImpl extends ServiceImpl<UserRepository, UserEntity> imp
                UserDto userDto = new UserDto();
                BeanUtils.copyProperties(userOut, userDto);
                if(SaltedHash.check(password,userDto.getPassword())){
+                   userDto.setPassword(password);
                     return userDto;
                }else {
                    throw new RuntimeException("密码错误");

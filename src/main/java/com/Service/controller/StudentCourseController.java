@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/api/studentCourse", produces = "application/json;charset=UTF-8")
 @Slf4j
@@ -43,6 +45,20 @@ public class StudentCourseController {
 
             if(studentCourseService.exitCourse(id)){
                 return Result.success(null,"success");
+            }else {
+                return Result.error("退出失败，请检查是否已加入课程");
+            }
+        }catch (Exception e) {
+            return Result.error(e.getMessage());
+        }
+    }
+    @ApiOperation(value = "获取课程信息",notes = "权限，学生")
+    @RequestMapping(path = "/getCourse",method = RequestMethod.GET)
+    public Result<List<StudentCourseDto>> getCourse(@RequestParam Long id){
+        try{
+            List<StudentCourseDto> list = studentCourseService.getCourse(id);
+            if(list.size()!=0){
+                return Result.success(list,"success");
             }else {
                 return Result.error("退出失败，请检查是否已加入课程");
             }

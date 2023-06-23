@@ -80,8 +80,9 @@ public class UserController {
            UserDto userDto = userService.login(username, password);
            if (userDto == null) {
                return Result.error("登录失败");
+
            } else {
-               SimplePropertyPreFilter filter = new SimplePropertyPreFilter(UserDto.class, "id");
+               SimplePropertyPreFilter filter = new SimplePropertyPreFilter(UserDto.class, "id","identity");
                String jsonString = JSONObject.toJSONString(userDto,filter);
                JSONObject jsonObject = JSONObject.parseObject(jsonString);
                request.getSession().setAttribute("user", userDto.getId());

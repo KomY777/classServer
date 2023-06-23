@@ -10,6 +10,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class CourseServiceImpl extends ServiceImpl<CourseRepository, CourseEntity> implements CourseService {
@@ -57,6 +60,22 @@ public class CourseServiceImpl extends ServiceImpl<CourseRepository, CourseEntit
             }else {
                 throw new RuntimeException("获取失败");
             }
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<CourseDto> getCourse(Long id) {
+        try{
+           List <CourseEntity> courseEntityList = courseRepository.getCourse(id);
+           CourseDto courseDto = new CourseDto();
+           List<CourseDto> list =new ArrayList<>();
+           for (CourseEntity entity : courseEntityList){
+               BeanUtils.copyProperties(entity,courseDto);
+               list.add(courseDto);
+           }
+           return list;
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
