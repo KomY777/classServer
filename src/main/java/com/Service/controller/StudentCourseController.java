@@ -68,6 +68,20 @@ public class StudentCourseController {
             return Result.error(e.getMessage());
         }
     }
+    @ApiOperation(value = "取消课程归档",notes = "权限，无")
+    @RequestMapping(path = "/cancelArchive",method = RequestMethod.GET)
+    public Result<String> cancelArchive(@RequestParam Long id){
+        try{
+
+            if(studentCourseService.cancelArchive(id)){
+                return Result.success(null,"success");
+            }else {
+                return Result.error("归档失败，请检查是否已加入课程");
+            }
+        }catch (Exception e) {
+            return Result.error(e.getMessage());
+        }
+    }
     @ApiOperation(value = "获取课程信息",notes = "权限，学生")
     @RequestMapping(path = "/getCourse",method = RequestMethod.GET)
     public Result<List<CourseDto>> getCourse(@RequestParam Long id){

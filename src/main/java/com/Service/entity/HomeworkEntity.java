@@ -23,17 +23,19 @@ public class HomeworkEntity implements Serializable {
     @ApiModelProperty(value = "课程状态",example = "0/1",position = 3)
     @TableField(value = "homework_state")
     private Integer homeworkState;
-    @ApiModelProperty(value = "备注",example = "字符串",position = 4)
+    @ApiModelProperty(value = "课程状态",example = "0/1",position = 4)
+    private String title;
+    @ApiModelProperty(value = "备注",example = "字符串",position = 5)
     @TableField(value = "remark")
     private String remark;
-    @ApiModelProperty(value = "文件路径",example = "字符串",position = 5)
+    @ApiModelProperty(value = "文件路径",example = "字符串",position = 6)
     @TableField(value = "file")
     private String filePath;
-    @ApiModelProperty(value = "创建时间",example = "1",position = 6)
+    @ApiModelProperty(value = "创建时间",example = "1",position = 7)
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     @TableField(value = "start_time")
     private Date startTime;
-    @ApiModelProperty(value = "结束时间",example = "1",position = 7)
+    @ApiModelProperty(value = "结束时间",example = "1",position = 8)
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     @TableField(value = "end_time")
     private Date endTime;

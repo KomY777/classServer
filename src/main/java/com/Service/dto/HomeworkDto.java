@@ -16,14 +16,16 @@ public class HomeworkDto implements Serializable {
     private Long courseId;
     @ApiModelProperty(value = "课程状态",example = "0/1",position = 3)
     private Integer homeworkState;
-    @ApiModelProperty(value = "备注",example = "字符串",position = 4)
+    @ApiModelProperty(value = "课程状态",example = "0/1",position = 4)
+    private String title;
+    @ApiModelProperty(value = "备注",example = "字符串",position = 5)
     private String remark;
-    @ApiModelProperty(value = "文件路径",example = "字符串",position = 5)
+    @ApiModelProperty(value = "文件路径",example = "字符串",position = 6)
     private String filePath;
-    @ApiModelProperty(value = "创建时间",example = "1",position = 6)
+    @ApiModelProperty(value = "创建时间",example = "1",position = 7)
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     private Date startTime;
-    @ApiModelProperty(value = "结束时间",example = "1",position = 7)
+    @ApiModelProperty(value = "结束时间",example = "1",position = 8)
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     private Date endTime;
 }

@@ -12,4 +12,5 @@ public interface StudentCourseService  extends IService<StudentCourseEntity> {
     boolean exitCourse(Long id);
     List<CourseDto> getCourse(Long id);
     boolean archiveCourse(Long id);
+    boolean cancelArchive(Long id);
 }

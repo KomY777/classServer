@@ -25,7 +25,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseRepository, CourseEntit
         try {
             CourseEntity courseEntity = new CourseEntity();
             BeanUtils.copyProperties(courseDto, courseEntity);
-            courseEntity.setCourseCode(Transform.fromDecimal(System.currentTimeMillis()%100000000));
+            courseEntity.setCourseCode(Transform.fromDecimal(System.currentTimeMillis()%1000000000));
             return courseRepository.addCourse(courseEntity) !=0;
         }catch (Exception e) {
             throw new RuntimeException(e);
@@ -55,7 +55,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseRepository, CourseEntit
     @Override
     public String getCourseCode(Long id,Long teacherId) {
         try{
-            String code = Transform.fromDecimal(System.currentTimeMillis()%100000000);
+            String code = Transform.fromDecimal(System.currentTimeMillis()%1000000000);
             if (courseRepository.getCourseCode(id,teacherId,code) != 0){
                 return code;
             }else {

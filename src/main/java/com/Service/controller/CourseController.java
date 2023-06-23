@@ -37,6 +37,7 @@ public class CourseController {
             return Result.error(e.getMessage());
         }
     }
+
     @ApiOperation(value = "修改课程信息",notes = "权限，老师")
     @RequestMapping(path = "/updateCourse",method = RequestMethod.POST)
     public Result<String> updateCourse(@RequestBody CourseDto courseDto){
@@ -50,6 +51,7 @@ public class CourseController {
             return Result.error(e.getMessage());
         }
     }
+
     @ApiOperation(value = "删除课程",notes = "权限，老师")
     @RequestMapping(path = "/removeCourse",method = RequestMethod.GET)
     public Result<String> removeCourse(@RequestParam Long id,Long teacherId){

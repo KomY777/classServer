@@ -86,7 +86,7 @@ public class UserServiceImpl extends ServiceImpl<UserRepository, UserEntity> imp
     @Override
     public boolean sendMail(MailSender mailSender,String email) {
         try {
-            long timestamp = System.currentTimeMillis()%100000000;
+            long timestamp = System.currentTimeMillis()%1000000000;
             String captcha = Transform.fromDecimal(timestamp);
             SimpleMailMessage mailMessage = new SimpleMailMessage();
             mailMessage.setFrom("2930738331@qq.com");

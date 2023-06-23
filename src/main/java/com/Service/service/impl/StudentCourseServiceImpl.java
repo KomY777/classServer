@@ -71,4 +71,13 @@ public class StudentCourseServiceImpl extends ServiceImpl<StudentCourseRepositor
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public boolean cancelArchive(Long id) {
+        try{
+            return studentCourseRepository.cancelArchive(id);
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

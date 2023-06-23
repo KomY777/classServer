@@ -21,4 +21,8 @@
         update course_student set `state` = 2
             where id = #{id}
     </update>
+    <update id="cancelArchive">
+        update course_student set `state` = 0
+        where id = #{id}
+    </update>
 </mapper>
