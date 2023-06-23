@@ -82,4 +82,22 @@ public class CourseServiceImpl extends ServiceImpl<CourseRepository, CourseEntit
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public boolean archiveCourse(Long id) {
+        try{
+          return courseRepository.archiveCourse(id);
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public boolean archiveMe(Long id) {
+        try{
+            return courseRepository.archiveMe(id);
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -34,4 +34,12 @@
         select * from course
                 where teacher_id = #{id}
     </select>
+    <update id="archiveCourse" >
+        update course_student set `state`=2
+            where course_id=#{id}
+    </update>
+    <update id="archiveMe">
+        update course set course_state=2
+            where teacher_id=#{id}
+    </update>
 </mapper>

@@ -62,7 +62,7 @@ public class StudentCourseController {
             if(studentCourseService.archiveCourse(id)){
                 return Result.success(null,"success");
             }else {
-                return Result.error("退出失败，请检查是否已加入课程");
+                return Result.error("归档失败，请检查是否已加入课程");
             }
         }catch (Exception e) {
             return Result.error(e.getMessage());

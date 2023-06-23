@@ -88,4 +88,32 @@ public class CourseController {
             return Result.error(e.getMessage());
         }
     }
+    @ApiOperation(value = "归档全部",notes = "权限，无")
+    @RequestMapping(path = "/archiveAll",method = RequestMethod.GET)
+    public Result<String> archiveCourse(@RequestParam Long id){
+        try{
+
+            if(courseService.archiveCourse(id)){
+                return Result.success(null,"success");
+            }else {
+                return Result.error("归档失败，请检查是否已加入课程");
+            }
+        }catch (Exception e) {
+            return Result.error(e.getMessage());
+        }
+    }
+    @ApiOperation(value = "归档自己",notes = "权限，无")
+    @RequestMapping(path = "/archiveMe",method = RequestMethod.GET)
+    public Result<String> archiveMe(@RequestParam Long id){
+        try{
+
+            if(courseService.archiveMe(id)){
+                return Result.success(null,"success");
+            }else {
+                return Result.error("归档失败，请检查是否已加入课程");
+            }
+        }catch (Exception e) {
+            return Result.error(e.getMessage());
+        }
+    }
 }
