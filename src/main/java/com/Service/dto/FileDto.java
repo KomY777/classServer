@@ -19,6 +19,6 @@ public class FileDto implements Serializable {
     @ApiModelProperty(value = "备注",example = "1",position = 4)
     private String remark;
     @ApiModelProperty(value = "创建时间",example = "1",position = 5)
-    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="YYYY-MM-dd HH:mm:ss")
     private Date createTime;
 }

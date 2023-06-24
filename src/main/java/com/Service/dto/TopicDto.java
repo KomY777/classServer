@@ -23,6 +23,6 @@ public class TopicDto implements Serializable {
     @ApiModelProperty(value = "正文",example = "1",position = 6)
     private String remark;
     @ApiModelProperty(value = "创建时间",example = "1",position = 7)
-    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="YYYY-MM-dd HH:mm:ss")
     private Date createTime;
 }

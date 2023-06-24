@@ -70,7 +70,7 @@ public class HomeworkServiceImpl extends ServiceImpl<HomeworkRepository, Homewor
     }
 
     @Override
-    public ArrayList<String> uploadFile(MultipartFile files) {
+    public ArrayList<String> uploadFile(MultipartFile[] files) {
         try{
             ArrayList<String> paths = new ArrayList<String>();
             for (MultipartFile file : files) {
@@ -78,6 +78,7 @@ public class HomeworkServiceImpl extends ServiceImpl<HomeworkRepository, Homewor
                 String filePath = "../upload" + fileName;
                 file.transferTo(new File(filePath));
             }
+            return paths;
         } catch (IOException e) {
           throw new RuntimeException(e);
         }

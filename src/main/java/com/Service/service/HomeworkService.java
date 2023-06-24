@@ -13,5 +13,5 @@ public interface HomeworkService extends IService<HomeworkEntity> {
      boolean updateHomework(HomeworkDto homeworkDto);
      List<HomeworkDto> getAllHomework(Long courseId);
      boolean deleteHomework(Long homeworkId);
-    ArrayList<String> uploadFile(MultipartFile files);
+    ArrayList<String> uploadFile(MultipartFile[] files);
 }

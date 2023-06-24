@@ -65,7 +65,7 @@ public class HomeworkController {
         return  Result.error("");
     }
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public Result<ArrayList<String>> uploadFile(@RequestParam("file") MultipartFile file){
+    public Result<ArrayList<String>> uploadFile(@RequestParam("file") MultipartFile[] file){
         try{
             ArrayList<String> filePath =homeworkService.uploadFile(file);
             if (filePath.size()!=0) {

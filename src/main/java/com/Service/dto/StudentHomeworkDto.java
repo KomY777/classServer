@@ -25,12 +25,12 @@ public class StudentHomeworkDto implements Serializable {
     @ApiModelProperty(value = "备注",example = "1",position =7)
     private String remark;
     @ApiModelProperty(value = "创建时间",example = "1",position = 8)
-    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="YYYY-MM-dd HH:mm:ss")
     private Date createTime;
     @ApiModelProperty(value = "结束时间",example = "1",position = 9)
-    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="YYYY-MM-dd HH:mm:ss")
     private Date endTime;
     @ApiModelProperty(value = "提交时间",example = "1",position = 10)
-    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="YYYY-MM-dd HH:mm:ss")
     private Date commitTime;
 }

@@ -19,10 +19,10 @@ public class AttendanceDto implements Serializable {
     @ApiModelProperty(value = "创建者",example = "字符串",position = 4)
     private String createBy;
     @ApiModelProperty(value = "创建时间",example = "1",position = 5)
-    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="YYYY-MM-dd HH:mm:ss")
     private Date createTime;
     @ApiModelProperty(value = "结束时间",example = "1",position = 6)
-    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="YYYY-MM-dd HH:mm:ss")
     private Date endTime;
 
 }

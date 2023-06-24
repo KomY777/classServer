@@ -22,7 +22,7 @@ public class StudentCourseDto implements Serializable {
     @ApiModelProperty(value = "学生的状态",example = "1",position = 5)
     private Integer state;
     @ApiModelProperty(value = "更新时间",example = "1",position = 6)
-    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="YYYY-MM-dd HH:mm:ss")
     private Date updateTime;
     @ApiModelProperty(value = "课程码",example = "1",position = 7)
     private String coruseCode;

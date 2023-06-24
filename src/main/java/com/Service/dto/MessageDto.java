@@ -21,6 +21,6 @@ public class MessageDto implements Serializable {
     @ApiModelProperty(value = "消息正文",example = "字符串",position = 5)
     private String remark;
     @ApiModelProperty(value = "消息发送时间",example = "字符串",position = 6)
-    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="YYYY-MM-dd HH:mm:ss")
     private Date createTime;
 }
