@@ -18,11 +18,7 @@
         where student_id = #{id}
     </select>
     <update id="archiveCourse" >
-        update course_student set `state` = 2
+        update course_student set `state` = #{state}
             where id = #{id}
-    </update>
-    <update id="cancelArchive">
-        update course_student set `state` = 0
-        where id = #{id}
     </update>
 </mapper>

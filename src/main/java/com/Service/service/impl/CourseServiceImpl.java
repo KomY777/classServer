@@ -86,6 +86,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseRepository, CourseEntit
     @Override
     public boolean archiveCourse(Long id) {
         try{
+            archiveMe(id,2);
           return courseRepository.archiveCourse(id);
         }catch (Exception e) {
             throw new RuntimeException(e);
@@ -93,9 +94,9 @@ public class CourseServiceImpl extends ServiceImpl<CourseRepository, CourseEntit
     }
 
     @Override
-    public boolean archiveMe(Long id) {
+    public boolean archiveMe(Long id,Integer state) {
         try{
-            return courseRepository.archiveMe(id);
+            return courseRepository.archiveMe(id,state);
         }catch (Exception e) {
             throw new RuntimeException(e);
         }

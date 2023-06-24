@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.Service.repository.CourseRepository">
 
-
     <insert id="addCourse" parameterType="com.Service.entity.CourseEntity">
                 insert into course(id,course_name,class_name,course_state,teacher_id,academic_year,semester,course_code)
             select #{id},#{courseName},#{className},#{courseState},#{teacherId},#{academicYear},#{semester},#{courseCode}
@@ -36,10 +35,11 @@
     </select>
     <update id="archiveCourse" >
         update course_student set `state`=2
-            where course_id=#{id}
+            where course_id=#{id} and(update course
+                set course_state=2)
     </update>
     <update id="archiveMe">
-        update course set course_state=2
-            where teacher_id=#{id}
+        update course set course_state=#{state}
+            where id=#{id}
     </update>
 </mapper>

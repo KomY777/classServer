@@ -11,13 +11,13 @@ import java.util.Date;
 @ApiModel(value = "学生作业完成情况数据库实体类")
 public class StudentHomeworkEntity implements Serializable {
     @ApiModelProperty(value = "学生作业id，主键自增",example = "1",position = 1,required = true)
-    private Integer id;
+    private Long id;
     @ApiModelProperty(value = "作业id,外键",example = "1",position = 2,required = true)
-    private Integer homeworkId;
+    private Long homeworkId;
     @ApiModelProperty(value = "作业状态",example = "1",position = 3)
     private String homeworkState;
     @ApiModelProperty(value = "学生id,外键",example = "1",position = 4, required =true)
-    private Integer studentId;
+    private Long studentId;
     @ApiModelProperty(value = "作业提交状态",example = "0/1",position = 5)
     private String commitState;
     @ApiModelProperty(value = "作业成绩",example = "1",position = 6)

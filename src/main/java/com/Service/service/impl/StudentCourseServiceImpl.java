@@ -64,20 +64,12 @@ public class StudentCourseServiceImpl extends ServiceImpl<StudentCourseRepositor
     }
 
     @Override
-    public boolean archiveCourse(Long id) {
+    public boolean archiveCourse(Long id,Integer state) {
         try{
-          return studentCourseRepository.archiveCourse(id);
+          return studentCourseRepository.archiveCourse(id,state);
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    @Override
-    public boolean cancelArchive(Long id) {
-        try{
-            return studentCourseRepository.cancelArchive(id);
-        }catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

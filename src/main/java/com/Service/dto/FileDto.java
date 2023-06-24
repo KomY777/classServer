@@ -11,9 +11,9 @@ import java.util.Date;
 @ApiModel(value = "文件数据传输对象")
 public class FileDto implements Serializable {
     @ApiModelProperty(value = "文件id，主键自增",example = "1",position = 1,required = true)
-    private Integer id;
+    private Long id;
     @ApiModelProperty(value = "教师id，外键",example = "1",position = 2,required = true)
-    private Integer teacherId;
+    private Long teacherId;
     @ApiModelProperty(value = "文件名",example = "1",position = 3)
     private String fileName;
     @ApiModelProperty(value = "备注",example = "1",position = 4)

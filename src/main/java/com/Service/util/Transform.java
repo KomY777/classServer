@@ -3,7 +3,7 @@ package com.Service.util;
 
 /**
  *
- * 将时间戳转换为32进制字符
+ * 将时间戳转换为36进制字符
  * @author Kom
  * @date  2023/6/8
  *

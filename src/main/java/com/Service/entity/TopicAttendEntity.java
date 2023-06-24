@@ -10,9 +10,9 @@ import java.util.Date;
 @ApiModel(value = "用户参与讨论数据库实体类")
 public class TopicAttendEntity implements Serializable {
     @ApiModelProperty(value = "每个留言的id，主键自增",example = "1",position = 1,required = true)
-    private Integer id;
+    private Long id;
     @ApiModelProperty(value = "话题id，外键",example = "1",position = 2,required = true)
-    private Integer topicId;
+    private Long topicId;
     @ApiModelProperty(value = "话题状态",example = "1",position = 3)
     private String topicState;
     @ApiModelProperty(value = "留言的创建者",example = "1",position = 4)

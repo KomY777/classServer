@@ -56,24 +56,10 @@ public class StudentCourseController {
 
     @ApiOperation(value = "课程归档",notes = "权限，无")
     @RequestMapping(path = "/archive",method = RequestMethod.GET)
-    public Result<String> archiveCourse(@RequestParam Long id){
+    public Result<String> archiveCourse(@RequestParam Long id,Integer state){
         try{
 
-            if(studentCourseService.archiveCourse(id)){
-                return Result.success(null,"success");
-            }else {
-                return Result.error("归档失败，请检查是否已加入课程");
-            }
-        }catch (Exception e) {
-            return Result.error(e.getMessage());
-        }
-    }
-    @ApiOperation(value = "取消课程归档",notes = "权限，无")
-    @RequestMapping(path = "/cancelArchive",method = RequestMethod.GET)
-    public Result<String> cancelArchive(@RequestParam Long id){
-        try{
-
-            if(studentCourseService.cancelArchive(id)){
+            if(studentCourseService.archiveCourse(id,state)){
                 return Result.success(null,"success");
             }else {
                 return Result.error("归档失败，请检查是否已加入课程");

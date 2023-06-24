@@ -15,5 +15,5 @@ public interface CourseRepository extends BaseMapper<CourseEntity> {
     List<CourseEntity> getCourse(Long id);
     String getName(Long id);
     boolean archiveCourse(Long id);
-    boolean archiveMe(Long id);
+    boolean archiveMe(Long id,Integer state);
 }

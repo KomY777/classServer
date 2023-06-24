@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -64,6 +65,15 @@ public class HomeworkController {
         if (homeworkService.deleteHomework(homeworkId)){
             return Result.success(null,"success");
         }
+        return  Result.error("");
+    }
+    @RequestMapping(value = "/uploadImage", method = RequestMethod.POST)
+    public Result<String> uploadImageFile(@RequestParam("img") MultipartFile uploadImage,
+                                          @RequestParam String token,
+                                          @RequestParam String type){
+        System.out.println(uploadImage);
+        System.out.println(token);
+        System.out.println(type);
         return  Result.error("");
     }
 

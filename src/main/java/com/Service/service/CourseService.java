@@ -13,5 +13,5 @@ public interface CourseService extends IService<CourseEntity> {
     String getCourseCode(Long id,Long teacherId);
     List<CourseDto> getCourse(Long id);
     boolean archiveCourse(Long id);
-    boolean archiveMe(Long id);
+    boolean archiveMe(Long id,Integer state);
 }

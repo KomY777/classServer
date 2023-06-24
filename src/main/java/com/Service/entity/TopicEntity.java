@@ -10,9 +10,9 @@ import java.util.Date;
 @ApiModel(value = "话题表数据库实体类")
 public class TopicEntity implements Serializable {
     @ApiModelProperty(value = "话题id，主键自增",example = "1",position = 1,required = true)
-    private Integer id;
+    private Long id;
     @ApiModelProperty(value = "课程id，外键",example = "1",position = 2,required = true)
-    private Integer courseId;
+    private Long courseId;
     @ApiModelProperty(value = "创建者",example = "1",position = 3)
     private String createBy;
     @ApiModelProperty(value = "话题状态",example = "1",position = 4)

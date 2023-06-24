@@ -10,6 +10,5 @@ import java.util.List;
 public interface StudentCourseRepository extends BaseMapper<StudentCourseEntity> {
      int joinCourse(StudentCourseEntity studentCourseEntity,String courseCode);
      List<Long> getCourse(Long id);
-     boolean archiveCourse(Long id);
-     boolean cancelArchive(Long id);
+     boolean archiveCourse(Long id,Integer state);
 }

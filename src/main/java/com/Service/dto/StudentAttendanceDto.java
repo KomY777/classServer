@@ -11,13 +11,13 @@ import java.util.Date;
 @ApiModel(value = "学生作业完成情况数据传输对象")
 public class StudentAttendanceDto implements Serializable {
     @ApiModelProperty(value = "每个学生考勤情况id，主键自增",example = "1",position = 1,required = true)
-    private Integer id;
+    private Long id;
     @ApiModelProperty(value = "考勤id，外键",example = "1",position = 2,required = true)
-    private Integer attendanceId;
+    private Long attendanceId;
     @ApiModelProperty(value = "考勤状态",example = "0/1",position = 3)
     private String attendaceState;
     @ApiModelProperty(value = "学生id，外键",example = "1",position = 4,required = true)
-    private Integer studentId;
+    private Long studentId;
     @ApiModelProperty(value = "签到状态",example = "0/1",position = 5)
     private String studentState;
     @ApiModelProperty(value = "创建时间",example = "1",position = 6)

@@ -106,10 +106,9 @@ public class CourseController {
     }
     @ApiOperation(value = "归档自己",notes = "权限，无")
     @RequestMapping(path = "/archiveMe",method = RequestMethod.GET)
-    public Result<String> archiveMe(@RequestParam Long id){
+    public Result<String> archiveMe(@RequestParam Long id,Integer state){
         try{
-
-            if(courseService.archiveMe(id)){
+            if(courseService.archiveMe(id,state)){
                 return Result.success(null,"success");
             }else {
                 return Result.error("归档失败，请检查是否已加入课程");
