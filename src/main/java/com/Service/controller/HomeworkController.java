@@ -3,7 +3,6 @@ package com.Service.controller;
 import com.Service.conf.Result;
 import com.Service.dto.HomeworkDto;
 import com.Service.service.HomeworkService;
-import com.Service.service.StudentHomeworkService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,13 +22,10 @@ public class HomeworkController {
     @Autowired
     private final HomeworkService homeworkService;
 
-    @Autowired
-    private final StudentHomeworkService studentHomeworkService;
 
     @Autowired
-    public HomeworkController(HomeworkService homeworkService,StudentHomeworkService studentHomeworkService) {
+    public HomeworkController(HomeworkService homeworkService) {
         this.homeworkService = homeworkService;
-        this.studentHomeworkService = studentHomeworkService;
     }
 
     @ApiOperation(value = "发布作业",notes = "权限，老师")
@@ -67,14 +64,17 @@ public class HomeworkController {
         }
         return  Result.error("");
     }
-    @RequestMapping(value = "/uploadImage", method = RequestMethod.POST)
-    public Result<String> uploadImageFile(@RequestParam("img") MultipartFile uploadImage,
-                                          @RequestParam String token,
-                                          @RequestParam String type){
-        System.out.println(uploadImage);
-        System.out.println(token);
-        System.out.println(type);
-        return  Result.error("");
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public Result<ArrayList<String>> uploadFile(@RequestParam("file") MultipartFile file){
+        try{
+            ArrayList<String> filePath =homeworkService.uploadFile(file);
+            if (filePath.size()!=0) {
+                return Result.success(filePath,"success");
+            }else {
+                return Result.error("error");
+            }
+        }catch (Exception e) {
+            return Result.error(e.getMessage());
+        }
     }
-
 }

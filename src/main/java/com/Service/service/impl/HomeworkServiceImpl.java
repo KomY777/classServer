@@ -9,7 +9,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,8 +49,8 @@ public class HomeworkServiceImpl extends ServiceImpl<HomeworkRepository, Homewor
         try{
             List<HomeworkEntity> listEntity = homeworkRepository.getAll(courseId);
             List<HomeworkDto> listDto = new ArrayList<HomeworkDto>();
-            HomeworkDto homeworkDto =new HomeworkDto();
             for (HomeworkEntity homeworkEntity : listEntity){
+                HomeworkDto homeworkDto =new HomeworkDto();
                 BeanUtils.copyProperties(homeworkEntity,homeworkDto);
                 listDto.add(homeworkDto);
             }
@@ -63,6 +66,20 @@ public class HomeworkServiceImpl extends ServiceImpl<HomeworkRepository, Homewor
             return homeworkRepository.deleteById(homeworkId) == 1;
         }catch (Exception e){
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public ArrayList<String> uploadFile(MultipartFile files) {
+        try{
+            ArrayList<String> paths = new ArrayList<String>();
+            for (MultipartFile file : files) {
+                String fileName = file.getOriginalFilename();
+                String filePath = "../upload" + fileName;
+                file.transferTo(new File(filePath));
+            }
+        } catch (IOException e) {
+          throw new RuntimeException(e);
         }
     }
 }
