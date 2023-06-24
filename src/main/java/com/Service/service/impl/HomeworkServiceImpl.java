@@ -61,6 +61,18 @@ public class HomeworkServiceImpl extends ServiceImpl<HomeworkRepository, Homewor
     }
 
     @Override
+    public HomeworkDto Correcting(Long id) {
+        try{
+            HomeworkEntity homeworkEntity = homeworkRepository.selectById(id);
+            HomeworkDto homeworkDto = new HomeworkDto();
+            BeanUtils.copyProperties(homeworkEntity, homeworkDto);
+            return homeworkDto;
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public boolean deleteHomework(Long homeworkId) {
         try{
             return homeworkRepository.deleteById(homeworkId) == 1;
@@ -75,8 +87,9 @@ public class HomeworkServiceImpl extends ServiceImpl<HomeworkRepository, Homewor
             ArrayList<String> paths = new ArrayList<String>();
             for (MultipartFile file : files) {
                 String fileName = file.getOriginalFilename();
-                String filePath = "../upload" + fileName;
+                String filePath = "../upload/" + fileName;
                 file.transferTo(new File(filePath));
+                paths.add(filePath);
             }
             return paths;
         } catch (IOException e) {

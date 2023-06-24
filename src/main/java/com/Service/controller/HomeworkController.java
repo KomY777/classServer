@@ -64,6 +64,17 @@ public class HomeworkController {
         }
         return  Result.error("");
     }
+
+    @ApiOperation(value = "获取作业信息",notes = "权限，无")
+    @RequestMapping(value = "/Correcting", method = RequestMethod.GET)
+    public Result<HomeworkDto> Correcting(@RequestParam Long courseId){
+        HomeworkDto homeworkDto = homeworkService.Correcting(courseId);
+        if (homeworkDto !=null) {
+            return Result.success(homeworkDto, "success");
+        }
+        return  Result.error("");
+    }
+    @ApiOperation(value = "上传文件",notes = "权限，无")
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public Result<ArrayList<String>> uploadFile(@RequestParam("file") MultipartFile[] file){
         try{

@@ -90,6 +90,20 @@ public class CourseController {
             return Result.error(e.getMessage());
         }
     }
+    @ApiOperation(value = "查询单个课程",notes = "权限，无")
+    @RequestMapping(path = "/getOneCourse",method = RequestMethod.GET)
+    public Result<CourseDto> getOneCourse(@RequestParam Long id,Integer state){
+        try{
+            CourseDto courseDto = courseService.getOneCourse(id);
+            if(courseDto !=null){
+                return Result.success(courseDto,"success");
+            }else {
+                return Result.error("没有课程");
+            }
+        }catch (Exception e) {
+            return Result.error(e.getMessage());
+        }
+    }
     @ApiOperation(value = "归档全部",notes = "权限，无")
     @RequestMapping(path = "/archiveAll",method = RequestMethod.GET)
     public Result<String> archiveCourse(@RequestParam Long id){

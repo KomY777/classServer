@@ -84,6 +84,18 @@ public class CourseServiceImpl extends ServiceImpl<CourseRepository, CourseEntit
     }
 
     @Override
+    public CourseDto getOneCourse(Long id) {
+        try{
+            CourseEntity courseEntity = courseRepository.selectById(id);
+            CourseDto courseDto = new CourseDto();
+            BeanUtils.copyProperties(courseEntity, courseDto);
+            return courseDto;
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public boolean archiveCourse(Long id) {
         try{
             archiveMe(id,2);
