@@ -1,6 +1,8 @@
 package com.Service.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -11,12 +13,15 @@ import java.util.Date;
 @ApiModel(value = "学生作业完成情况数据传输对象")
 public class StudentAttendanceDto implements Serializable {
     @ApiModelProperty(value = "每个学生考勤情况id，主键自增",example = "1",position = 1,required = true)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
     @ApiModelProperty(value = "考勤id，外键",example = "1",position = 2,required = true)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long attendanceId;
     @ApiModelProperty(value = "考勤状态",example = "0/1",position = 3)
     private String attendaceState;
     @ApiModelProperty(value = "学生id，外键",example = "1",position = 4,required = true)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long studentId;
     @ApiModelProperty(value = "签到状态",example = "0/1",position = 5)
     private String studentState;

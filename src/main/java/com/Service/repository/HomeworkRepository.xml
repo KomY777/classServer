@@ -5,4 +5,5 @@
         select * from homework
                  where course_id = #{courseId}
     </select>
+
 </mapper>

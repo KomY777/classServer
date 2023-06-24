@@ -1,5 +1,7 @@
 package com.Service.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -10,6 +12,7 @@ import java.io.Serializable;
 @ApiModel(value = "课程表数据传输对象")
 public class CourseDto implements Serializable {
     @ApiModelProperty(value = "课程id，主键自增",example = "1",position = 1,required = true)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
     @ApiModelProperty(value = "课程名",example = "1",position = 2)
     private String courseName;
@@ -18,6 +21,7 @@ public class CourseDto implements Serializable {
     @ApiModelProperty(value = "课程状态",example = "1",position = 4)
     private Integer courseState;
     @ApiModelProperty(value = "课程教师id,外键",example = "1",position = 5, required =true)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long teacherId;
     @ApiModelProperty(value = "学年",example = "2022-2023",position = 6)
     private String academicYear;

@@ -9,5 +9,6 @@ import java.util.List;
 
 @Mapper
 public interface HomeworkRepository extends BaseMapper<HomeworkEntity> {
-    public List<HomeworkEntity> getAll(Long courseId);
+    List<HomeworkEntity> getAll(Long courseId);
+    boolean createHomework(HomeworkEntity homeworkEntity);
 }

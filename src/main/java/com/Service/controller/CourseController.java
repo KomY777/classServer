@@ -92,7 +92,7 @@ public class CourseController {
     }
     @ApiOperation(value = "查询单个课程",notes = "权限，无")
     @RequestMapping(path = "/getOneCourse",method = RequestMethod.GET)
-    public Result<CourseDto> getOneCourse(@RequestParam Long id,Integer state){
+    public Result<CourseDto> getOneCourse(@RequestParam Long id){
         try{
             CourseDto courseDto = courseService.getOneCourse(id);
             if(courseDto !=null){

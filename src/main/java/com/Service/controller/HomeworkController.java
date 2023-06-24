@@ -2,7 +2,9 @@ package com.Service.controller;
 
 import com.Service.conf.Result;
 import com.Service.dto.HomeworkDto;
+import com.Service.dto.StudentHomeworkDto;
 import com.Service.service.HomeworkService;
+import com.Service.service.StudentHomeworkService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -21,11 +23,13 @@ import java.util.List;
 public class HomeworkController {
     @Autowired
     private final HomeworkService homeworkService;
-
+    @Autowired
+    private final StudentHomeworkService studentHomeworkService;
 
     @Autowired
-    public HomeworkController(HomeworkService homeworkService) {
+    public HomeworkController(HomeworkService homeworkService,StudentHomeworkService studentHomeworkService) {
         this.homeworkService = homeworkService;
+        this.studentHomeworkService = studentHomeworkService;
     }
 
     @ApiOperation(value = "发布作业",notes = "权限，老师")
@@ -47,7 +51,7 @@ public class HomeworkController {
         return  Result.error("");
     }
 
-    @ApiOperation(value = "获取作业信息",notes = "权限，无")
+    @ApiOperation(value = "获取全部作业信息",notes = "权限，无")
     @RequestMapping(value = "/getAllHomework", method = RequestMethod.GET)
     public Result<List<HomeworkDto>> getAllHomework(@RequestParam Long courseId){
        List<HomeworkDto> list = homeworkService.getAllHomework(courseId);
@@ -65,15 +69,46 @@ public class HomeworkController {
         return  Result.error("");
     }
 
-    @ApiOperation(value = "获取作业信息",notes = "权限，无")
+    @ApiOperation(value = "获取作业详情信息",notes = "权限，无")
     @RequestMapping(value = "/Correcting", method = RequestMethod.GET)
-    public Result<HomeworkDto> Correcting(@RequestParam Long courseId){
-        HomeworkDto homeworkDto = homeworkService.Correcting(courseId);
+    public Result<HomeworkDto> Correcting(@RequestParam Long homeworkId){
+        HomeworkDto homeworkDto = homeworkService.Correcting(homeworkId);
         if (homeworkDto !=null) {
             return Result.success(homeworkDto, "success");
         }
         return  Result.error("");
     }
+    @ApiOperation(value = "查看学生提交的作业",notes = "权限，无")
+    @RequestMapping(value = "/viewCommit", method = RequestMethod.GET)
+    public Result<StudentHomeworkDto> viewCommit(@RequestParam Long studentHomeworkId){
+        StudentHomeworkDto studentHomeworkDto = studentHomeworkService.viewCommit(studentHomeworkId);
+        if (studentHomeworkDto !=null) {
+            return Result.success(studentHomeworkDto, "success");
+        }
+        return  Result.error("");
+    }
+    @ApiOperation(value = "查询所有学生作业信息",notes = "权限，无")
+    @RequestMapping(value = "/getAllHomeworkInfo", method = RequestMethod.GET)
+    public Result<List<StudentHomeworkDto>> getAllHomeworkInfo(@RequestParam Long homeworkId){
+        try {
+            List<StudentHomeworkDto> list =studentHomeworkService.getAllHomeworkInfo(homeworkId);
+            if (list.size()!=0) {
+                return Result.success(list, "success");
+            }
+            return Result.error("");
+        }catch (Exception e) {
+            return Result.error("");
+        }
+    }
+    @ApiOperation(value = "批改作业",notes = "权限，无")
+    @RequestMapping(value = "/marking", method = RequestMethod.POST)
+    public Result<String> marking(@RequestBody StudentHomeworkDto studentHomework){
+        if(studentHomeworkService.marking(studentHomework)){
+            return Result.success(null, "success");
+        }
+        return  Result.error("");
+    }
+
     @ApiOperation(value = "上传文件",notes = "权限，无")
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public Result<ArrayList<String>> uploadFile(@RequestParam("file") MultipartFile[] file){

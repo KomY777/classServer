@@ -3,7 +3,10 @@ package com.Service.service.impl;
 
 import com.Service.dto.HomeworkDto;
 import com.Service.entity.HomeworkEntity;
+import com.Service.entity.StudentHomeworkEntity;
 import com.Service.repository.HomeworkRepository;
+import com.Service.repository.StudentCourseRepository;
+import com.Service.repository.StudentHomeworkRepository;
 import com.Service.service.HomeworkService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
@@ -21,13 +24,26 @@ public class HomeworkServiceImpl extends ServiceImpl<HomeworkRepository, Homewor
 
     @Autowired
     private HomeworkRepository homeworkRepository;
+    @Autowired
+    private StudentHomeworkRepository studentHomeworkRepository;
+    @Autowired
+    private StudentCourseRepository studentCourseRepository;
 
     @Override
     public boolean createHomework(HomeworkDto homeworkDto) {
         try{
             HomeworkEntity homeworkEntity = new HomeworkEntity();
             BeanUtils.copyProperties(homeworkDto, homeworkEntity);
-           return homeworkRepository.insert(homeworkEntity)==1;
+            homeworkRepository.insert(homeworkEntity);
+            List<Long> list = studentCourseRepository.selectStudentIdBycourseId(homeworkDto.getCourseId());
+            for(Long id : list) {
+                StudentHomeworkEntity studentHomeworkEntity = new StudentHomeworkEntity();
+                studentHomeworkEntity.setCommitState("0");
+                studentHomeworkEntity.setStudentId(id);
+                studentHomeworkEntity.setHomeworkId(homeworkEntity.getId());
+                studentHomeworkRepository.insert(studentHomeworkEntity);
+            }
+            return  true;
         }catch (Exception e){
             throw new RuntimeException(e);
         }

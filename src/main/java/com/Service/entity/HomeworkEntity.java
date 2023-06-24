@@ -23,7 +23,7 @@ public class HomeworkEntity implements Serializable {
     @ApiModelProperty(value = "课程状态",example = "0/1",position = 3)
     @TableField(value = "homework_state")
     private Integer homeworkState;
-    @ApiModelProperty(value = "课程状态",example = "0/1",position = 4)
+    @ApiModelProperty(value = "标题",example = "0/1",position = 4)
     private String title;
     @ApiModelProperty(value = "备注",example = "字符串",position = 5)
     @TableField(value = "remark")

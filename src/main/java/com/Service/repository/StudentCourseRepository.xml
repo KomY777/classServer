@@ -21,4 +21,8 @@
         update course_student set `state` = #{state}
             where id = #{id}
     </update>
+    <select id="selectStudentIdBycourseId" resultType="long">
+        select student_id from course_student
+            where course_id = #{id}
+    </select>
 </mapper>
