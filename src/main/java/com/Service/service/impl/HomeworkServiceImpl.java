@@ -2,6 +2,7 @@ package com.Service.service.impl;
 
 
 import com.Service.dto.HomeworkDto;
+import com.Service.dto.StudentHomeworkDto;
 import com.Service.entity.HomeworkEntity;
 import com.Service.entity.StudentHomeworkEntity;
 import com.Service.repository.HomeworkRepository;
@@ -93,6 +94,17 @@ public class HomeworkServiceImpl extends ServiceImpl<HomeworkRepository, Homewor
         try{
             return homeworkRepository.deleteById(homeworkId) == 1;
         }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public boolean commitHomework(StudentHomeworkDto studentHomeworkDto) {
+        try{
+            StudentHomeworkEntity studentHomeworkEntity = new StudentHomeworkEntity();
+            BeanUtils.copyProperties(studentHomeworkDto, studentHomeworkEntity);
+            return studentHomeworkRepository.updateById(studentHomeworkEntity) == 1;
+        }catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

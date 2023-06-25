@@ -50,6 +50,14 @@ public class HomeworkController {
         }
         return  Result.error("");
     }
+    @ApiOperation(value = "提交作业",notes = "权限，老师")
+    @RequestMapping(value = "/commitHomework", method = RequestMethod.POST)
+    public Result<String> commitHomework(@RequestBody StudentHomeworkDto studentHomeworkDto){
+        if (homeworkService.commitHomework(studentHomeworkDto)){
+            return Result.success(null,"success");
+        }
+        return  Result.error("");
+    }
 
     @ApiOperation(value = "获取全部作业信息",notes = "权限，无")
     @RequestMapping(value = "/getAllHomework", method = RequestMethod.GET)

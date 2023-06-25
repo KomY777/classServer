@@ -1,6 +1,7 @@
 package com.Service.service;
 
 import com.Service.dto.HomeworkDto;
+import com.Service.dto.StudentHomeworkDto;
 import com.Service.entity.HomeworkEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,5 +15,6 @@ public interface HomeworkService extends IService<HomeworkEntity> {
      List<HomeworkDto> getAllHomework(Long courseId);
      HomeworkDto Correcting(Long id);
      boolean deleteHomework(Long homeworkId);
+     boolean commitHomework(StudentHomeworkDto studentHomeworkDto);
     ArrayList<String> uploadFile(MultipartFile[] files);
 }
