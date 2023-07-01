@@ -54,7 +54,7 @@ public class HomeworkController {
     @RequestMapping(value = "/commitHomework", method = RequestMethod.POST)
     public Result<String> commitHomework(@RequestBody StudentHomeworkDto studentHomeworkDto){
         if (homeworkService.commitHomework(studentHomeworkDto)){
-            return Result.success(null,"success");
+            return Result.success(null,"success!!");
         }
         return  Result.error("");
     }
