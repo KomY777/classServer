@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -101,9 +102,11 @@ public class HomeworkServiceImpl extends ServiceImpl<HomeworkRepository, Homewor
     @Override
     public boolean commitHomework(StudentHomeworkDto studentHomeworkDto) {
         try{
+            Date currentDate = new Date();
             StudentHomeworkEntity studentHomeworkEntity = new StudentHomeworkEntity();
             BeanUtils.copyProperties(studentHomeworkDto, studentHomeworkEntity);
-            return studentHomeworkRepository.updateById(studentHomeworkEntity) == 1;
+            studentHomeworkEntity.setUpdateTime(currentDate);
+            return studentHomeworkRepository.updateHomework(studentHomeworkEntity);
         }catch (Exception e) {
             throw new RuntimeException(e);
         }

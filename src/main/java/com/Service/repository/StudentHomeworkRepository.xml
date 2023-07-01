@@ -5,4 +5,8 @@
         select * from homework_student
                  where homework_id = #{id}
     </select>
+    <update id="updateHomework" parameterType="com.Service.entity.StudentHomeworkEntity">
+        update homework_student set commit_state=#{commitState},grade=#{grade},remark=#{remark},file=#{filePath},update_time=#{updateTime}
+                where homework_id=#{homeworkId} and student_id = #{studentId}
+    </update>
 </mapper>

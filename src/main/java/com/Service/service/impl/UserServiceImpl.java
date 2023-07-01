@@ -92,7 +92,7 @@ public class UserServiceImpl extends ServiceImpl<UserRepository, UserEntity> imp
             mailMessage.setFrom("2930738331@qq.com");
             mailMessage.setTo(email);
             mailMessage.setSubject("CQUT 课堂派");
-            String message = "Hi,您正在注册课堂派,以下是您的邮箱验证码:\n\n\n      " + captcha;
+            String message = "Hi,您正在使用课堂派,以下是您的邮箱验证码:\n\n\n      " + captcha;
             mailMessage.setText(message);
             mailSender.send(mailMessage);
         }catch (Exception e) {
